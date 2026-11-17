@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101b2a">
+  <title>FINORA — Personal Finance</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1420;
+      color: #f1f5f9;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #5ee0a0;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-top: 6px;
+      font-size: 14px;
+    }
+
+    .balance {
+      background: #142638;
+      border: 1px solid #294052;
+      padding: 28px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+    }
+
+    .balance p {
+      color: #a6b5c5;
+      font-size: 14px;
+    }
+
+    .balance h1 {
+      font-size: 36px;
+      margin-top: 12px;
+      color: #ffffff;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: #142638;
+      border: 1px solid #294052;
+      padding: 22px;
+      border-radius: 14px;
+    }
+
+    .card p {
+      color: #a6b5c5;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .income {
+      color: #5ee0a0;
+      font-size: 22px;
+    }
+
+    .expense {
+      color: #fb8585;
+      font-size: 22px;
+    }
+
+    .section {
+      background: #142638;
+      border: 1px solid #294052;
+      padding: 22px;
+      border-radius: 14px;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .empty {
+      color: #94a3b8;
+      font-size: 14px;
+      padding: 20px 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 16px;
+      }
+
+      .balance h1 {
+        font-size: 29px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div>
+        <div class="logo">FINORA.</div>
+        <p class="subtitle">Personal Finance Manager</p>
+      </div>
+    </header>
+
+    <section class="balance">
+      <p>TOTAL SALDO</p>
+      <h1>Rp0</h1>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <p>TOTAL PEMASUKAN</p>
+        <h2 class="income">Rp0</h2>
+      </div>
+
+      <div class="card">
+        <p>TOTAL PENGELUARAN</p>
+        <h2 class="expense">Rp0</h2>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Transaksi Terbaru</h2>
+      <p class="empty">Belum ada transaksi.</p>
+    </section>
+  </main>
+</body>
+</html>
