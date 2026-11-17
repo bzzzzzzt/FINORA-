@@ -1,2 +1,2 @@
-# FINORA-
+# finora
 Personal finance management app
