@@ -2,6 +2,11 @@
 import { openDatabase } from "./db.js";
 
 import {
+  exportBackup,
+  importBackup
+} from "./backup.js";
+
+import {
   loadTransactions,
   createTransaction,
   removeTransaction
@@ -135,6 +140,49 @@ async function startApp() {
     }
 
     db = await openDatabase();
+    
+// Tombol Export Backup
+document.getElementById("exportButton")
+  .addEventListener("click", async () => {
+    try {
+      await exportBackup(db);
+      alert("Backup berhasil dibuat.");
+    } catch (error) {
+      console.error(error);
+      alert("Gagal membuat backup.");
+    }
+  });
+
+// Tombol Restore Backup
+document.getElementById("importButton")
+  .addEventListener("click", async () => {
+    const fileInput = document.getElementById("importFile");
+    const file = fileInput.files[0];
+
+    if (!file) {
+      alert("Pilih file backup terlebih dahulu.");
+      return;
+    }
+
+    if (!confirm(
+      "Restore akan menggantikan seluruh transaksi saat ini. Lanjutkan?"
+    )) {
+      return;
+    }
+
+    try {
+      const count = await importBackup(db, file);
+
+      await renderTransactions();
+
+      fileInput.value = "";
+
+      alert(`Berhasil memulihkan ${count} transaksi.`);
+    } catch (error) {
+      console.error(error);
+      alert(error.message || "Gagal memulihkan backup.");
+    }
+  });
 
     document.getElementById("date").value = getToday();
 
