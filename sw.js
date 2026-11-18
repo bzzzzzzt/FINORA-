@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "finora-v3";
+const CACHE_NAME = "finora-v4";
 
 const APP_FILES = [
   "./",
@@ -37,14 +37,31 @@ self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
+    (async () => {
+      const cached = await caches.match(event.request);
 
-      return fetch(event.request).catch(() => {
+      if (cached) {
+        return cached;
+      }
+
+      try {
+        return await fetch(event.request);
+      } catch (error) {
         if (event.request.mode === "navigate") {
-          return caches.match("./index.html");
+          const fallback = await caches.match("./index.html");
+
+          if (fallback) {
+            return fallback;
+          }
         }
-      });
-    })
+
+        return new Response("You're offline.", {
+          status: 503,
+          headers: {
+            "Content-Type": "text/plain"
+          }
+        });
+      }
+    })()
   );
 });
