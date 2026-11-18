@@ -198,6 +198,29 @@
     </div>
   </section>
 
+<section class="panel">
+  <h3>Data Management</h3>
+
+  <p class="muted">
+    Amankan dan pulihkan seluruh data transaksi FINORA.
+  </p>
+
+  <button id="exportButton" class="primary" type="button">
+    Export Backup
+  </button>
+
+  <label for="importFile">Import Backup (JSON)</label>
+  <input
+    id="importFile"
+    type="file"
+    accept=".json,application/json"
+  >
+
+  <button id="importButton" class="primary" type="button">
+    Restore Backup
+  </button>
+</section>
+
   <p class="muted" id="status">Memuat penyimpanan...</p>
 
 </main>
