@@ -1,9 +1,16 @@
 
-const CACHE_NAME = "finora-v1";
+const CACHE_NAME = "finora-v2";
 
 const APP_FILES = [
   "./",
-  "./index.html"
+  "./index.html",
+  "./manifest.json",
+
+  "./js/app.js",
+  "./js/db.js",
+  "./js/validation.js",
+  "./js/transactions.js",
+  "./js/backup.js"
 ];
 
 self.addEventListener("install", event => {
