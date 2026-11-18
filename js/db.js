@@ -64,3 +64,21 @@ export function deleteTransaction(db, id) {
     transaction.onabort = () => reject(transaction.error);
   });
 }
+
+// Mengganti seluruh data transaksi
+export function replaceAllTransactions(db, items) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE, "readwrite");
+    const store = transaction.objectStore(STORE);
+
+    store.clear();
+
+    items.forEach(item => {
+      store.put(item);
+    });
+
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error);
+    transaction.onabort = () => reject(transaction.error);
+  });
+}
