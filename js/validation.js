@@ -40,11 +40,13 @@ export function validateTransaction(data) {
   ) {
     errors.push("Format tanggal tidak valid.");
   } else {
-    const parsedDate = new Date(data.date + "T00:00:00");
+    const [year, month, day] = data.date.split("-").map(Number);
+    const parsedDate = new Date(year, month - 1, day);
 
     if (
-      Number.isNaN(parsedDate.getTime()) ||
-      parsedDate.toISOString().slice(0, 10) !== data.date
+      parsedDate.getFullYear() !== year ||
+      parsedDate.getMonth() !== month - 1 ||
+      parsedDate.getDate() !== day
     ) {
       errors.push("Tanggal tidak valid.");
     }
